@@ -1,0 +1,94 @@
+
+## 1. Dátové typy (Základné)
+
+| Typ | Čo je to | Príklad |
+| :--- | :--- | :--- |
+| `int` | celé číslo | `42` |
+| `float` | desatinné číslo (bodka!) | `3.5` |
+| `str` | reťazec (text) | `"Jana"` |
+| `bool` | pravdivostná hodnota | `True`, `False` |
+| `None` | „žiadna hodnota“ | `None` |
+
+---
+
+## 2. Kolekcie (viac hodnôt naraz)
+
+| Typ | Vlastnosti | Zápis |
+| :--- | :--- | :--- |
+| `list` | zoradený, meňteľný, povolené duplicity | `[1, 2, 3]` |
+| `tuple` | zoradený, nemeňteľný | `(1, 2, 3)` |
+| `dict` | páry kľúč-hodnota | `{"vek": 18, "meno": "Jana"}` |
+| `set` | len hodnoty, bez duplicít, bez poradia | `{1, 2, 3}` |
+
+**Pozor na prázdne zátvorky:**
+* `prazdny_slovnik = {}` — toto je **`dict`**, nie množina!
+* `prazdna_mnozina = set()` — prázdna množina sa vytvára pomocou `set()`.
+
+---
+
+## 3. Meniateľnosť (mutable vs. immutable)
+
+* **Meniateľné (mutable):** `list`, `dict`, `set` — dajú sa upraviť „na mieste“ (in-place).
+* **Nemeniateľné (immutable):** `int`, `float`, `str`, `bool`, `tuple` — zmeniť sa nedajú, vždy vznikne nová hodnota.
+
+**Dôsledok pri metódach:**
+```python
+zoznam = [3, 1, 2]
+zoznam.sort()  # zmení zoznam priamo, VRÁTI None -> priradenie NEpoužívame
+
+veta = " Ahoj "
+veta = veta.strip()  # str je nemenný, preto VRÁTI nový reťazec -> priradenie MUSÍME použiť
+```
+
+---
+
+## 4. Metódy vs. všeobecné funkcie
+
+* **Metóda:** patrí objektu a volá sa cez bodku: `zoznam.append(4)`, `text.upper()`.
+* **Všeobecná funkcia:** funguje pre rôzne typy: `len(objekt)`, `type(objekt)`.
+
+**Užitočné funkcie a metódy:**
+* `type(x)` — zistí typ hodnoty `x`.
+* `dir(x)` — zobrazí dostupné metódy pre objekt `x`.
+* `dict.get(kľúč, predvolené)` — bezpečný prístup ku prvkom slovníka (bez rizika `KeyError`).
+
+---
+
+## 5. Konverzie typov
+
+* **Ručné prevody:** `int("12")`, `float("3.5")`, `str(42)`, `bool(0)`.
+* **Pravidlá prevodu:**
+  * `int("12")` prejde úspešne (`12`).
+  * `int("12.5")` zlyhá (`ValueError`).
+  * `int("abc")` zlyhá (`ValueError`).
+* **Vstup z klávesnice je vždy `str`:**
+  ```python
+  vek = input("Zadaj vek: ")  # type(vek) -> str
+  vek = int(vek)  # ak s ním chceme počítať, treba konverziu
+  ```
+* **Typové anotácie:**
+  ```python
+  vek: int = 18  # kód zbehne aj keď tam dáš "x", je to len odporúčanie/poznámka
+  ```
+
+---
+
+## 6. Reťazce (str)
+
+* Metódy vracajú nový reťazec (keďže `str` je nemenný): `strip()`, `upper()`, `capitalize()`, `replace(a, b)`, `split()`.
+* **Zreťazovanie metód (method chaining):** každá metóda pracuje s výsledkom predošlej:
+  ```python
+  veta = " python JE super "
+  veta = veta.strip().capitalize()  # výsledok: 'Python je super'
+  ```
+
+---
+
+## 7. Zoznamy (list)
+
+* Práca so zoznamami a pridávanie prvkov:
+  ```python
+  mesiace = ["január", "február", "marec"]
+  mesiace.append("apríl")  # pridá prvok na koniec zoznamu
+  ```
+```
